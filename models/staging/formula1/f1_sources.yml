@@ -1,0 +1,60 @@
+version: 2
+
+sources:
+  - name: formula1
+    description: formula 1 datasets with normalized tables 
+    database: formula1 
+    schema: raw
+    tables:
+      - name: circuits
+        description: One record per circuit, which is the specific race course. 
+        columns:
+          - name: circuitid
+            tests:
+            - unique
+            - not_null
+      - name: constructors 
+        description: One record per constructor. Constructors are the teams that build their formula 1 cars. 
+        columns:
+          - name: constructorid
+            tests:
+            - unique
+            - not_null
+      - name: drivers
+        description: One record per driver. This table gives details about the driver. 
+        columns:
+          - name: driverid
+            tests:
+            - unique
+            - not_null
+      - name: lap_times
+        description: One row per lap in each race. Lap times started being recorded in this dataset in 1984 and joined through driver_id.
+      - name: pit_stops 
+        description: One row per pit stop. Pit stops do not have their own id column, the combination of the race_id and driver_id identify the pit stop.
+        columns:
+          - name: stop
+            tests:
+              - accepted_values:
+                  values: [1,2,3,4,5,6,7,8]
+                  quote: false            
+      - name: races 
+        description: One race per row. Importantly this table contains the race year to understand trends. 
+        columns:
+          - name: raceid
+            tests:
+            - unique
+            - not_null        
+      - name: results
+        columns:
+          - name: resultid
+            tests:
+            - unique
+            - not_null   
+        description: One row per result. The main table that we join out for grid and position variables.
+      - name: status
+        description: One status per row. The status contextualizes whether the race was finished or what issues arose e.g. collisions, engine, etc. 
+        columns:
+          - name: statusid
+            tests:
+            - unique
+            - not_null   
