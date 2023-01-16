@@ -8,7 +8,7 @@ So far the list of future improvements is as follows:
 - [ ]  label encorder clean up for numeric variables
 - [ ]  ohe for the categorical variables
 - [ ]  multi-class accuracy
-- [ ]  trying out https://github.com/omnata-labs/dbt-ml-preprocessing for some of the pipeline?
+- [ ]  trying out https://github.com/omnata-labs/dbt-ml-preprocessing for some of preprocessing?
 
 
 ## Project Description
