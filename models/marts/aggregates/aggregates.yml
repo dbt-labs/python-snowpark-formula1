@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fastest_pit_stops_by_constructor
+    description: Use the python .describe() method to retrieve summary statistics table about pit stops by constructor. Sort by average stop time ascending so the first row returns the fastest constructor.
+    columns:
+      - name: constructor_name
+        description: team that makes the car
+        tests:
+          - unique
+
+  - name: lap_times_moving_avg
+    description: Use the python .rolling() method to calculate the 5 year rolling average of pit stop times alongside the average for each year. 
+    columns:
+      - name: race_year
+        description: year of the race
+        tests:
+          - relationships:
+              to: ref('int_lap_times_years')
+              field: race_year

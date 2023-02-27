@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: int_results
+    description: '{{ doc("int_results") }}'
+
+  - name: int_pit_stops
+    description: '{{ doc("int_pit_stops") }}'
+ 
+  - name: int_lap_times_years 
+    description: '{{ doc("int_lap_times_years") }}'
