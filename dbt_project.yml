@@ -39,6 +39,7 @@ models:
         +tags: "bi"
 
       core:
+        +materialized: table
         +docs:
           node_color: "#800080"
 

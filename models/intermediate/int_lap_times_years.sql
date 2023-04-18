@@ -1,12 +1,12 @@
 with lap_times as (
 
-  select * from {{ ref('stg_f1_lap_times') }}
+  select * from {{ ref('stg_lap_times') }}
 
 ),
 
 races as (
 
-  select * from {{ ref('stg_f1_races') }}
+  select * from {{ ref('stg_races') }}
 
 ),
 

@@ -20,7 +20,7 @@ pit_stops_joined as (
         constructor_name,
         stop_number,
         lap, 
-        lap_time_formatted,
+        pit_stop_time,
         pit_stop_duration_seconds, 
         pit_stop_milliseconds
     from base_results

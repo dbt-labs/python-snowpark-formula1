@@ -20,7 +20,7 @@ TARGET_LIB_PATH = os.path.join(LOCAL_TEMP_DIR, 'lib')
 # and that will be used during prediction
 FEATURE_COLS = [
            "RACE_YEAR"
-           ,"CIRCUIT_NAME"
+           ,"RACE_NAME"
            ,"GRID"
            ,"CONSTRUCTOR_NAME"
            ,"DRIVER"

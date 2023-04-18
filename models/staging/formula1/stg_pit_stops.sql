@@ -12,8 +12,9 @@ renamed as (
         driverid as driver_id,
         stop as stop_number,
         lap, 
-        time as lap_time_formatted,
+        time as pit_stop_time,
         duration as pit_stop_duration_seconds, 
+        {{ convert_laptime('pit_stop_duration_seconds') }} as pit_stop_duration,
         milliseconds as pit_stop_milliseconds
     from source
 )

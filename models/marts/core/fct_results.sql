@@ -16,7 +16,7 @@ int_pit_stops as (
 
 circuits as (
 
-  select * from {{ ref('stg_f1_circuits') }}
+  select * from {{ ref('stg_circuits') }}
   
 ), 
  
@@ -27,7 +27,7 @@ circuits as (
         race_year, 
         race_round,
         int_results.circuit_id,
-        int_results.circuit_name,
+        int_results.race_name,
         circuit_ref,
         location,
         country,
