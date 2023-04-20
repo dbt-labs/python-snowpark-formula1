@@ -11,7 +11,7 @@ def model(dbt, session):
   data = dbt.ref("ml_data_prep").to_pandas()
 
   # list out covariates we want to use in addition to outcome variable we are modeling - position
-  covariates = data[['RACE_YEAR','CIRCUIT_NAME','GRID','CONSTRUCTOR_NAME','DRIVER','DRIVERS_AGE_YEARS','DRIVER_CONFIDENCE','CONSTRUCTOR_RELAIBLITY','TOTAL_PIT_STOPS_PER_RACE','ACTIVE_DRIVER','ACTIVE_CONSTRUCTOR', 'POSITION']]
+  covariates = data[['RACE_YEAR','RACE_NAME','GRID','CONSTRUCTOR_NAME','DRIVER','DRIVERS_AGE_YEARS','DRIVER_CONFIDENCE','CONSTRUCTOR_RELAIBLITY','TOTAL_PIT_STOPS_PER_RACE','ACTIVE_DRIVER','ACTIVE_CONSTRUCTOR', 'POSITION']]
  
   # filter covariates on active drivers and constructors
   # use fil_cov as short for "filtered_covariates"
@@ -20,7 +20,7 @@ def model(dbt, session):
   # Encode categorical variables using LabelEncoder
   # TODO: we'll update this to both ohe in the future for non-ordinal variables! 
   le = LabelEncoder()
-  fil_cov['CIRCUIT_NAME'] = le.fit_transform(fil_cov['CIRCUIT_NAME'])
+  fil_cov['RACE_NAME'] = le.fit_transform(fil_cov['RACE_NAME'])
   fil_cov['CONSTRUCTOR_NAME'] = le.fit_transform(fil_cov['CONSTRUCTOR_NAME'])
   fil_cov['DRIVER'] = le.fit_transform(fil_cov['DRIVER'])
   fil_cov['TOTAL_PIT_STOPS_PER_RACE'] = le.fit_transform(fil_cov['TOTAL_PIT_STOPS_PER_RACE'])

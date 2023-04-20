@@ -11,8 +11,9 @@ renamed as (
         raceid as race_id, 
         driverid as driver_id,
         lap,
-        position, 
+        position AS driver_position, 
         time as lap_time_formatted,
+        {{ convert_laptime('lap_time_formatted') }}  AS official_laptime,
         milliseconds as lap_time_milliseconds
     from source
 )

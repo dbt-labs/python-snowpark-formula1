@@ -1,30 +1,30 @@
 with results as (
 
-  select * from {{ ref('stg_f1_results') }}
+  select * from {{ ref('stg_results') }}
 
 ),
 
 races as ( 
 
-  select * from {{ ref('stg_f1_races') }}
+  select * from {{ ref('stg_races') }}
 
 ),
 
 drivers as (
 
-  select * from {{ ref('stg_f1_drivers') }}
+  select * from {{ ref('stg_drivers') }}
 
 ), 
 
 constructors as (
 
-  select * from {{ ref('stg_f1_constructors') }}
+  select * from {{ ref('stg_constructors') }}
   
 ), 
 
 status as (
 
-  select * from {{ ref('stg_f1_status') }}
+  select * from {{ ref('stg_status') }}
   
 ), 
 
@@ -35,7 +35,7 @@ int_results as (
       race_year, 
       race_round,
       circuit_id,
-      circuit_name,
+      race_name,
       race_date,
       race_time, 
       results.driver_id,
