@@ -11,7 +11,7 @@ with
             forename,
             surname,
             dob as date_of_birth,
-            nationality as driver_nationality
+            nationality as driver_nationality, 
             url as driver_url
         from drivers
     )
