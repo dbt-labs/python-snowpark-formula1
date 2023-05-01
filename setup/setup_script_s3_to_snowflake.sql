@@ -223,8 +223,14 @@ create or replace table formula1.raw.sprint_results (
 	POSITION FLOAT,
 	POSITIONTEXT VARCHAR(16777216),
 	POSITIONORDER NUMBER(38,0),
-	POINTS NUMBER(38,0)
-);
+	POINTS NUMBER(38,0), 
+    LAPS NUMBER(38,0),
+    TIME VARCHAR(16777216),
+    MILLISECONDS NUMBER(38,0),
+    FASTESTLAP VARCHAR(16777216),
+    FASTESTLAPTIME VARCHAR(16777216),
+    STATUSID NUMBER(38,0)
+    );
 copy into sprint_results 
 from @formula1_stage/sprint_results.csv
 on_error='continue';
