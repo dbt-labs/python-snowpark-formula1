@@ -5,7 +5,7 @@ def model(dbt, session):
     dbt.config(packages=["pandas"])
 
     # get upstream data
-    fct_results = dbt.ref("fct_results").to_pandas()
+    fct_results = dbt.ref("fct_results_agg").to_pandas()
 
     # provide years so we do not hardcode dates in filter command
     start_year=2010
