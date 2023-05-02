@@ -1,6 +1,6 @@
 with
 
-source  as (
+races  as (
 
     select * from {{ source('formula1','races') }}
 
@@ -9,13 +9,13 @@ source  as (
 renamed as (
     select 
         raceid as race_id,
-        year as race_year, 
-        round as race_round,
+        "YEAR" as race_year, 
+        "ROUND" as race_round,
         circuitid as circuit_id,
         name as race_name,
-        date as race_date,
-        to_time(time) as race_time, 
-        -- omit the url 
+        "DATE" as race_date,
+        "TIME" as race_time, 
+        url as race_url,
         fp1_date,
         fp1_time,
         fp2_date,
@@ -26,7 +26,7 @@ renamed as (
         quali_time,
         sprint_date,
         sprint_time
-    from source
+    from races
 )
 
 select * from renamed 
