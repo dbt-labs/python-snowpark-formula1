@@ -37,7 +37,7 @@ int_results as (
       circuit_id,
       race_name,
       race_date,
-      race_time, 
+      results.race_time, 
       results.driver_id,
       results.driver_number,
       forename ||' '|| surname as driver, 
@@ -47,20 +47,19 @@ int_results as (
       constructor_name,
       constructor_nationality, 
       grid, 
-      position,
+      driver_position,
       position_text,
       position_order,
       points,
       laps,
-      results_time_formatted, 
-      results_milliseconds,
+      milliseconds,
       fastest_lap,
-      results_rank,
-      fastest_lap_time_formatted,
-      fastest_lap_speed, 
+      driver_rank,
+      fastest_laptime,
+      fastest_lapspeed, 
       results.status_id,
       status,
-      case when position is null then 1 else 0 end as dnf_flag
+      case when driver_position is null then 1 else 0 end as dnf_flag
     from results
     left join races
       on results.race_id=races.race_id

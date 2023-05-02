@@ -15,7 +15,7 @@ def model(dbt, session):
     data =  fct_results.loc[fct_results['RACE_YEAR'].between(start_year, end_year)]
 
     # convert string to an integer
-    data['POSITION'] = data['POSITION'].astype(float)
+    # data['POSITION'] = data['POSITION'].astype(float)
 
     # we cannot have nulls if we want to use total pit stops 
     data['TOTAL_PIT_STOPS_PER_RACE'] = data['TOTAL_PIT_STOPS_PER_RACE'].fillna(0)
