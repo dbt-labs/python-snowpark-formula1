@@ -1,0 +1,142 @@
+version: 2
+
+models:
+    - name: dim_circuits
+      description: '{{ doc("dim_circuits") }}'
+      columns:
+          - name: dim_circuit_id
+            description: "The primary key for this table, each circuit is distinct"
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_constructor_results
+      description: "Fact data related to constructor (ie brand) results. This is at a race level but race info isn't in this model, just the race_id."
+      columns:
+          - name: constructor_results_id
+            description: "The primary key for this table, result has its own id."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_constructor_standings
+      description: "Fact data related to constructor (ie brand) results. This is at a race level but race info isn't in this model, just the race_id."
+      columns:
+          - name: constructor_standings_id
+            description: "The primary key for this table, result has its own id."
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_constructors
+      description: "Dimensional data for the constructors (teams)."
+      columns:
+          - name: constructor_id
+            description: "The primary key for this table, each team has its own id."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_driver_standings
+      description: "Fact data for driver standings by race."
+      columns:
+          - name: driver_standings_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_drivers
+      description: "Dimensional model stage for driver attributes."
+      columns:
+          - name: driver_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_lap_times
+      description: "Fact data around every lap."
+      columns:
+          - name: lap_times_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_pitstops
+      description: "Fact data around pitstop times."
+      columns:
+          - name: pitstop_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_qualifying
+      description: "Fact data around qualifying times."
+      columns:
+          - name: qualifying_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_qualifying_pivoted
+      description: "Fact data around qualifying times."
+      columns:
+          - name: qualifying_pivoted_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: qualifying_round
+            description: "The round of qualifying, must be distinct values 1, 2 or 3."
+            tests:
+                - accepted_values:
+                    values: ['1', '2', '3']
+
+    - name: dim_races
+      description: "Dimensional data around race events."
+      columns:
+          - name: race_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_results
+      description: "Fact data around qualifying times."
+      columns:
+          - name: fct_result_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: dim_seasons
+      description: "Season information"
+      columns:
+          - name: season_year
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+
+    - name: fct_sprint_results
+      description: "Fact data around qualifying times."
+      columns:
+          - name: result_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+                
+    - name: dim_status
+      description: "Status codes mapping."
+      columns:
+          - name: status_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null

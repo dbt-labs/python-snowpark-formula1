@@ -55,8 +55,8 @@ int_results as (
       milliseconds,
       fastest_lap,
       driver_rank,
-      fastest_laptime,
-      fastest_lapspeed, 
+      fastest_lap_time,
+      fastest_lap_speed, 
       results.status_id,
       status,
       case when driver_position is null then 1 else 0 end as dnf_flag

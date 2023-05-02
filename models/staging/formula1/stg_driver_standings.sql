@@ -4,12 +4,12 @@ with
 
     renamed as (
         select
-            driverstandingsid as driver_standings_id,
-            raceid as race_id,
-            driverid as driver_id,
+            driver_standings_id as driver_standings_id,
+            race_id as race_id,
+            driver_id as driver_id,
             points as driver_points,
             "POSITION" as driver_position,
-            positiontext as position_text,
+            position_text as position_text,
             wins as driver_wins
         from driver_standings
     )

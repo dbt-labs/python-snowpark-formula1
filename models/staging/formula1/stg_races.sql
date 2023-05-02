@@ -8,10 +8,10 @@ races  as (
 
 renamed as (
     select 
-        raceid as race_id,
+        race_id as race_id,
         "YEAR" as race_year, 
         "ROUND" as race_round,
-        circuitid as circuit_id,
+        circuit_id as circuit_id,
         name as race_name,
         "DATE" as race_date,
         "TIME" as race_time, 
@@ -29,4 +29,4 @@ renamed as (
     from races
 )
 
-select * from renamed 
+select * from renamed

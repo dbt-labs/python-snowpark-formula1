@@ -6,7 +6,7 @@ WITH status AS (
 
 renamed AS (
     SELECT 
-        statusid AS status_id,
+        status_id AS status_id,
         status 
     FROM status
 )

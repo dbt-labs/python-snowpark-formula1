@@ -54,8 +54,8 @@ circuits as (
         milliseconds,
         fastest_lap,
         driver_rank,
-        fastest_laptime,
-        fastest_lapspeed, 
+        fastest_lap_time,
+        fastest_lap_speed, 
         status_id,
         status,
         dnf_flag
