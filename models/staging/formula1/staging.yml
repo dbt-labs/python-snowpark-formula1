@@ -15,7 +15,7 @@ exposures:
 
 models:
     - name: stg_circuits
-      description: "Staging dimensional data for F1 circuits"
+      description: '{{ doc("stg_circuit_desc") }}'
       columns:
           - name: circuit_id
             description: "The primary key for this table, each circuit is distinct"
@@ -78,7 +78,7 @@ models:
             description: '{{ doc("constructor_wins_def") }}'
 
     - name: stg_constructors
-      description: "Dimensional data for the constructors (teams)."
+      description: '{{ doc("stg_constructors_desc") }}'
       columns:
           - name: constructor_id
             description: "The primary key for this table, each team has its own id."
@@ -106,6 +106,8 @@ models:
             description: '{{ doc("race_id_def") }}'
           - name: driver_id
             description: '{{ doc("driver_id_def") }}'
+          - name: driver_code
+            description: '{{ doc("driver_code_def") }}'
           - name: driver_points
             description: '{{ doc("driver_points_def") }}'
           - name: driver_position
