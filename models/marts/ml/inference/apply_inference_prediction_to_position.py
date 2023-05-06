@@ -81,7 +81,7 @@ def model(dbt, session):
    hold_out_df = (dbt.ref("hold_out_dataset_for_prediction")
        .select(*FEATURE_COLS)
    )
-   trained_model_file = dbt.ref("train_test_position")
+   trained_model_file = dbt.ref("train_model_to_predict_position")
 
    # Perform prediction.
    new_predictions_df = hold_out_df.withColumn("position_predicted"
