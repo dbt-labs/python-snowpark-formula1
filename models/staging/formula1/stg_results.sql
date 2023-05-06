@@ -4,25 +4,25 @@ with
 
     renamed as (
         select
-            resultid as result_id,
-            raceid as race_id,
-            driverid as driver_id,
-            constructorid as constructor_id,
+            result_id as result_id,
+            race_id as race_id,
+            driver_id as driver_id,
+            constructor_id as constructor_id,
             number as driver_number,
             grid,
             --position::int as position,
             iff(contains(position, '\N'), null, position) as driver_position,
-            positiontext as position_text,
-            positionorder as position_order,
+            position_text as position_text,
+            position_order as position_order,
             points,
             laps,
             iff(contains("TIME", '\N'), null, "TIME") as race_time,
             iff(contains(milliseconds, '\N'), null, milliseconds) as milliseconds,
-            iff(contains(fastestlap, '\N'), null, fastestlap) as fastest_lap,
+            iff(contains(fastest_lap, '\N'), null, fastest_lap) as fastest_lap,
             "RANK" as driver_rank,
-            iff(contains(fastestlaptime, '\N'),null,{{ convert_laptime("fastestlaptime") }}) as fastest_laptime,
-            iff(contains(fastestlapspeed, '\N'), null, fastestlapspeed) as fastest_lapspeed,
-            statusid as status_id
+            iff(contains(fastest_lap_time, '\N'),null,{{ convert_laptime("fastest_lap_time") }}) as fastest_lap_time,
+            iff(contains(fastest_lap_speed, '\N'), null, fastest_lap_speed) as fastest_lap_speed,
+            status_id as status_id
         from results
     )
 

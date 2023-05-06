@@ -1,0 +1,5 @@
+version: 2
+
+macros:
+    - name: convert_laptime
+      description: "This macro converts formatted time string into actual time variable type."

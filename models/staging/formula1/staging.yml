@@ -1,0 +1,363 @@
+version: 2
+
+exposures:
+
+  - name: Formula1
+    label: F1
+    type: analysis
+    maturity: high
+    url: https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
+    description: >
+      This exposure is to document the source of the data.
+    owner:
+      name: Ian Cooper
+      email: ian.cooper@dbtlabs.com
+
+models:
+    - name: stg_circuits
+      description: '{{ doc("stg_circuit_desc") }}'
+      columns:
+          - name: circuit_id
+            description: "The primary key for this table, each circuit is distinct"
+            tests:
+                - unique
+                - not_null
+          - name: circuit_ref
+            description: '{{ doc("circuit_ref_def") }}'
+          - name: circuit_name
+            description: '{{ doc("circuit_name_def") }}'
+          - name: circuit_location
+            description: '{{ doc("circuit_location_def") }}'
+          - name: circuit_country
+            description: '{{ doc("circuit_country_def") }}'
+          - name: latitude
+            description: '{{ doc("circuit_lat_def") }}'
+          - name: longitude
+            description: '{{ doc("circuit_lng_def") }}'
+          - name: altitude
+            description: '{{ doc("circuit_alt_def") }}'
+          - name: circuit_url
+            description: '{{ doc("circuit_url_def") }}'
+
+    - name: stg_constructor_results
+      description: "Fact data related to constructor (ie brand) results. This is at a race level but race info isn't in this model, just the race_id."
+      columns:
+          - name: constructor_results_id
+            description: "The primary key for this table, result has its own id."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: constructor_id
+            description: '{{ doc("constructor_id_def") }}'
+          - name: constructor_points
+            description: '{{ doc("constructor_points_def") }}'
+          - name: status
+            description: '{{ doc("constructor_status_def") }}'
+
+    - name: stg_constructor_standings
+      description: "Fact data related to constructor (ie brand) results. This is at a race level but race info isn't in this model, just the race_id."
+      columns:
+          - name: constructor_standings_id
+            description: "The primary key for this table, result has its own id."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: constructor_id
+            description: '{{ doc("constructor_id_def") }}'
+          - name: points
+            description: '{{ doc("constructor_points_def") }}'
+          - name: constructor_position
+            description: '{{ doc("constructor_status_def") }}'
+          - name: position_text
+            description: '{{ doc("constructor_points_def") }}'
+          - name: wins
+            description: '{{ doc("constructor_wins_def") }}'
+
+    - name: stg_constructors
+      description: '{{ doc("stg_constructors_desc") }}'
+      columns:
+          - name: constructor_id
+            description: "The primary key for this table, each team has its own id."
+            tests:
+                - unique
+                - not_null
+          - name: constructor_ref
+            description: '{{ doc("constructor_ref_def") }}'
+          - name: constructor_name
+            description: '{{ doc("constructor_name_def") }}'
+          - name: constructor_nationality
+            description: '{{ doc("constructor_nationality_def") }}'
+          - name: constructor_url
+            description: '{{ doc("constructor_url_def") }}'
+
+    - name: stg_driver_standings
+      description: "Fact data for driver standings by race."
+      columns:
+          - name: driver_standings_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: driver_id
+            description: '{{ doc("driver_id_def") }}'
+          - name: driver_code
+            description: '{{ doc("driver_code_def") }}'
+          - name: driver_points
+            description: '{{ doc("driver_points_def") }}'
+          - name: driver_position
+            description: '{{ doc("driver_position_def") }}'
+          - name: position_text
+            description: '{{ doc("position_text_def") }}'
+          - name: driver_wins
+            description: '{{ doc("driver_wins_def") }}'
+
+    - name: stg_drivers
+      description: "Dimensional model stage for driver attributes."
+      columns:
+          - name: driver_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: driver_ref
+            description: '{{ doc("driver_ref_def") }}'
+          - name: driver_number
+            description: '{{ doc("driver_number_def") }}'
+          - name: forename
+            description: '{{ doc("driver_forename_def") }}'
+          - name: surname
+            description: '{{ doc("driver_surname_def") }}'
+          - name: date_of_birth
+            description: '{{ doc("driver_dob_def") }}'
+          - name: driver_nationality
+            description: '{{ doc("driver_nationality_def") }}'
+          - name: driver_url
+            description: '{{ doc("driver_url_def") }}'
+
+    - name: stg_lap_times
+      description: "Fact data around every lap."
+      columns:
+          - name: lap_times_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: driver_id
+            description: '{{ doc("driver_id_def") }}'
+          - name: lap
+            description: '{{ doc("laps_def") }}'
+          - name: driver_position
+            description: '{{ doc("driver_position_def") }}'
+          - name: lap_time_formatted
+            description: '{{ doc("lap_time_def") }}'
+          - name: official_laptime
+            description: '{{ doc("official_lap_time_def") }}'
+          - name: lap_time_milliseconds
+            description: '{{ doc("lap_time_milliseconds_def") }}'
+
+    - name: stg_pit_stops
+      description: "Fact data around pitstop times."
+      columns:
+          - name: pitstop_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null     
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: driver_id
+            description: '{{ doc("driver_id_def") }}'
+          - name: stop_number
+            description: '{{ doc("laps_def") }}'
+          - name: lap
+            description: '{{ doc("stop_number_def") }}'
+          - name: pit_stop_time
+            description: '{{ doc("pit_stop_time_def") }}'
+          - name: pit_stop_duration_seconds
+            description: '{{ doc("pit_stop_duration_seconds_def") }}'
+          - name: pit_stop_duration
+            description: '{{ doc("pit_stop_duration_def") }}'
+          - name: pit_stop_milliseconds
+            description: '{{ doc("pit_stop_milliseconds_def") }}'    
+
+    - name: stg_qualifying
+      description: "Fact data around qualifying times."
+      columns:
+          - name: qualifying_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: driver_id
+            description: '{{ doc("driver_id_def") }}'
+          - name: constructor_id
+            description: '{{ doc("constructor_id_def") }}'
+          - name: driver_number
+            description: '{{ doc("driver_number_def") }}'
+          - name: qualifying_position
+            description: '{{ doc("qualifying_position_def") }}'
+          - name: q1_time
+            description: '{{ doc("q1_time_def") }}'
+          - name: q2_time
+            description: '{{ doc("q2_time_def") }}'
+          - name: q3_time
+            description: '{{ doc("q3_time_def") }}'
+
+    - name: stg_races
+      description: "Fact data around qualifying times."
+      columns:
+          - name: race_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: race_year
+            description: '{{ doc("race_year_def") }}'
+          - name: race_round
+            description: '{{ doc("race_round_def") }}'
+          - name: circuit_id
+            description: '{{ doc("circuit_id_def") }}'
+          - name: race_name
+            description: '{{ doc("race_name_def") }}'
+          - name: race_date
+            description: '{{ doc("race_date_def") }}'
+          - name: race_time
+            description: '{{ doc("race_time_def") }}'
+          - name: race_url
+            description: '{{ doc("race_url_def") }}'
+          - name: fp1_date
+            description: '{{ doc("fp1_date_def") }}'
+          - name: fp1_time
+            description: '{{ doc("fp1_time_def") }}'
+          - name: fp2_date
+            description: '{{ doc("fp2_date_def") }}'
+          - name: fp2_time
+            description: '{{ doc("fp2_time_def") }}'
+          - name: fp3_date
+            description: '{{ doc("fp3_date_def") }}'
+          - name: fp3_time
+            description: '{{ doc("fp3_time_def") }}'
+          - name: quali_date
+            description: '{{ doc("quali_date_def") }}'
+          - name: quali_time
+            description: '{{ doc("quali_time_def") }}'
+          - name: sprint_date
+            description: '{{ doc("sprint_date_def") }}'
+          - name: sprint_time
+            description: '{{ doc("sprint_time_def") }}'
+
+    - name: stg_results
+      description: "Fact data around qualifying times."
+      columns:
+          - name: result_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: driver_id
+            description: '{{ doc("driver_id_def") }}'
+          - name: constructor_id
+            description: '{{ doc("constructor_id_def") }}'
+          - name: driver_number
+            description: '{{ doc("driver_number_def") }}'
+          - name: grid
+            description: '{{ doc("grid_def") }}'
+          - name: driver_position
+            description: '{{ doc("driver_position_def") }}'
+          - name: position_text
+            description: '{{ doc("position_text_def") }}'
+          - name: position_order
+            description: '{{ doc("position_order_def") }}'
+          - name: points
+            description: '{{ doc("points_def") }}'
+          - name: laps
+            description: '{{ doc("laps_def") }}'
+          - name: race_time
+            description: '{{ doc("race_time_def") }}'
+          - name: milliseconds
+            description: '{{ doc("results_milliseconds_def") }}'
+          - name: fastest_lap
+            description: '{{ doc("fastest_lap_def") }}'
+          - name: driver_rank
+            description: '{{ doc("driver_rank_def") }}'
+          - name: fastest_lap_time
+            description: '{{ doc("fastest_lap_time_def") }}'
+          - name: fastest_lap_speed
+            description: '{{ doc("fastest_lap_speed_def") }}'
+          - name: status_id
+            description: '{{ doc("status_id_def") }}'
+
+
+    - name: stg_seasons
+      description: "Season information"
+      columns:
+          - name: season_year
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: season_url
+            description: "The Wiki URL for F1 Season"
+
+    - name: stg_sprint_results
+      description: "Fact data around qualifying times."
+      columns:
+          - name: result_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: race_id
+            description: '{{ doc("race_id_def") }}'
+          - name: driver_id
+            description: '{{ doc("driver_id_def") }}'
+          - name: constructor_id
+            description: '{{ doc("constructor_id_def") }}'
+          - name: driver_number
+            description: '{{ doc("driver_number_def") }}'
+          - name: grid
+            description: '{{ doc("grid_def") }}'
+          - name: driver_position
+            description: '{{ doc("driver_position_def") }}'
+          - name: position_text
+            description: '{{ doc("position_text_def") }}'
+          - name: position_order
+            description: '{{ doc("position_order_def") }}'
+          - name: points
+            description: '{{ doc("points_def") }}'
+          - name: laps
+            description: '{{ doc("laps_def") }}'
+          - name: sprint_time
+            description: '{{ doc("sprint_time_def") }}'
+          - name: milliseconds
+            description: '{{ doc("results_milliseconds_def") }}'
+          - name: fastest_lap
+            description: '{{ doc("fastest_lap_def") }}'
+          - name: fastest_lap_time
+            description: '{{ doc("fastest_lap_time_def") }}'
+          - name: status_id
+            description: '{{ doc("status_id_def") }}'
+
+                
+    - name: stg_status
+      description: "Status codes mapping."
+      columns:
+          - name: status_id
+            description: "The primary key for this table."
+            tests:
+                - unique
+                - not_null
+          - name: status
+            description: '{{ doc("status_def") }}'

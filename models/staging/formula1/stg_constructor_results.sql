@@ -4,9 +4,9 @@ with
     ),
     renamed as (
         select
-            constructorresultsid as constructor_results_id,
-            raceid as race_id,
-            constructorid as constructor_id,
+            constructor_results_id as constructor_results_id,
+            race_id as race_id,
+            constructor_id as constructor_id,
             points as constructor_points,
             iff(contains(status, '\N'), null, status) as status
         from constructor_results

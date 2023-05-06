@@ -1,6 +1,6 @@
 with base_results as (
 
-  select * from {{ ref('fct_results') }}
+  select * from {{ ref('fct_results_agg') }}
   
 ), 
 

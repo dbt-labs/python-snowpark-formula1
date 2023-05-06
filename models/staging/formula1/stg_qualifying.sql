@@ -3,10 +3,10 @@ with
 
     renamed as (
         select
-            qualifyid as qualifying_id,
-            raceid as race_id,
-            driverid as driver_id,
-            constructorid as constructor_id,
+            qualifying_id as qualifying_id,
+            race_id as race_id,
+            driver_id as driver_id,
+            constructor_id as constructor_id,
             number as driver_number,
             "POSITION" as qualifying_position,
             iff(contains(q1, '\N'), null, {{ convert_laptime("q1") }}) as q1_time,
