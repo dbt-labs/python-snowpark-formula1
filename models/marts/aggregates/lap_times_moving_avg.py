@@ -5,7 +5,7 @@ def model(dbt, session):
     dbt.config(packages=["pandas"])
 
     # get upstream data
-    lap_times = dbt.ref("int_lap_times_years").to_pandas()
+    lap_times = dbt.ref("mrt_lap_times_years").to_pandas()
 
     # describe the data
     lap_times["LAP_TIME_SECONDS"] = lap_times["LAP_TIME_MILLISECONDS"]/1000

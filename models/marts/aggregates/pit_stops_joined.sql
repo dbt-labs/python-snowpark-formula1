@@ -1,12 +1,12 @@
 with base_results as (
 
-  select * from {{ ref('fct_results_agg') }}
+  select * from {{ ref('mrt_results') }}
   
 ), 
 
 pit_stops as (
 
-  select * from {{ ref('int_pit_stops') }}
+  select * from {{ ref('mrt_pit_stops') }}
   
 ),
 

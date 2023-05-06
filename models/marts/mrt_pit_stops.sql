@@ -1,6 +1,6 @@
 with stg_f1__pit_stops as 
 (
-    select * from {{ ref('stg_pit_stops') }}
+    select * from {{ ref('fct_pit_stops') }}
 ),
 
 pit_stops_per_race as (
