@@ -1,3 +1,6 @@
+{{ config(
+  enabled=false
+) }}
 WITH qualifying AS (
     SELECT 
         qualifying_id                               AS qualifying_id,
