@@ -6,7 +6,7 @@ with base_results as (
 
 pit_stops as (
 
-  select * from {{ ref('mrt_pit_stops') }}
+  select * from {{ ref('fct_pit_stops') }}
   
 ),
 
