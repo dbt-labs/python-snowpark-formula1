@@ -1,12 +1,12 @@
 with base_results as (
 
-  select * from {{ ref('fct_results_agg') }}
+  select * from {{ ref('mrt_results') }}
   
 ), 
 
 pit_stops as (
 
-  select * from {{ ref('int_pit_stops') }}
+  select * from {{ ref('fct_pit_stops') }}
   
 ),
 
@@ -22,7 +22,8 @@ pit_stops_joined as (
         lap, 
         pit_stop_time,
         pit_stop_duration_seconds, 
-        pit_stop_milliseconds
+        pit_stop_milliseconds,
+        total_pit_stops_per_race
     from base_results
     left join pit_stops
         on base_results.race_id=pit_stops.race_id and base_results.driver_id=pit_stops.driver_id

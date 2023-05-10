@@ -1,5 +1,5 @@
 name: 'snowflake_python_workshop'
-version: '1.3.0'
+version: '1.5.0'
 require-dbt-version: '>=1.3.0'
 config-version: 2
 
@@ -26,10 +26,6 @@ models:
     staging:
       +docs:
         node_color: "CadetBlue"
-        
-    intermediate:
-      +docs:
-        node_color: "MediumSlateBlue"
 
     marts:
       +materialized: table
@@ -38,15 +34,16 @@ models:
           node_color: "Maroon"
         +tags: "bi"
 
-      core:
-        +materialized: table
-        +docs:
-          node_color: "#800080"
+    core:
+      +materialized: table
+      +docs:
+        node_color: "#800080"
 
-      ml:
-        prep:
-          +docs:
-            node_color: "Indigo"
-        train_predict:
-          +docs:
-            node_color: "#36454f"
+    ml:
+      +materialized: table
+      prep_encoding_splitting:
+        +docs:
+          node_color: "Indigo"
+      training_and_prediction:
+        +docs:
+          node_color: "Black"

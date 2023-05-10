@@ -32,7 +32,7 @@ def model(dbt, session):
    logger.info('Model training version: ' + version)
 
    # read in our training and testing upstream dataset
-   test_train_df = dbt.ref("train_test_dataset")
+   test_train_df = dbt.ref("training_testing_dataset")
 
    #  cast snowpark df to pandas df
    test_train_pd_df = test_train_df.to_pandas()

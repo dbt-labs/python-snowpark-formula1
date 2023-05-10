@@ -1,30 +1,30 @@
 with results as (
 
-  select * from {{ ref('stg_results') }}
+  select * from {{ ref('fct_results') }}
 
 ),
 
 races as ( 
 
-  select * from {{ ref('stg_races') }}
+  select * from {{ ref('dim_races') }}
 
 ),
 
 drivers as (
 
-  select * from {{ ref('stg_drivers') }}
+  select * from {{ ref('dim_drivers') }}
 
 ), 
 
 constructors as (
 
-  select * from {{ ref('stg_constructors') }}
+  select * from {{ ref('dim_constructors') }}
   
 ), 
 
 status as (
 
-  select * from {{ ref('stg_status') }}
+  select * from {{ ref('dim_status') }}
   
 ), 
 

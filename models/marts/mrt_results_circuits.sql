@@ -1,6 +1,6 @@
 with int_results as (
 
-  select * from {{ ref('int_results') }}
+  select * from {{ ref('mrt_results') }}
 
 ),
 
@@ -9,14 +9,14 @@ int_pit_stops as (
     race_id,
     driver_id, 
     max(total_pit_stops_per_race) as total_pit_stops_per_race
-  from {{ ref('int_pit_stops') }}
+  from {{ ref('mrt_pit_stops') }}
   group by 1,2
   
 ), 
 
 circuits as (
 
-  select * from {{ ref('stg_circuits') }}
+  select * from {{ ref('dim_circuits') }}
   
 ), 
  

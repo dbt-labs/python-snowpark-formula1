@@ -1,12 +1,12 @@
 with lap_times as (
 
-  select * from {{ ref('stg_lap_times') }}
+  select * from {{ ref('fct_lap_times') }}
 
 ),
 
 races as (
 
-  select * from {{ ref('stg_races') }}
+  select * from {{ ref('dim_races') }}
 
 ),
 
