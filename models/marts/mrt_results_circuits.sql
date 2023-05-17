@@ -9,6 +9,7 @@ int_pit_stops as (
     race_id,
     driver_id, 
     max(total_pit_stops_per_race) as total_pit_stops_per_race
+    
   from {{ ref('mrt_pit_stops') }}
   group by 1,2
   
