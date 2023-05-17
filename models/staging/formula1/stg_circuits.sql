@@ -9,8 +9,8 @@ with
             country as circuit_country,
             lat as latitude,
             lng as longitude,
-            to_number(iff(contains(alt, 'N'), null, alt)) as altitude,
-            url as circuit_url
+            to_number(iff(contains(alt, 'N'), null, alt)) as altitude
+            -- url as circuit_url
         from circuits
     )
 select *
