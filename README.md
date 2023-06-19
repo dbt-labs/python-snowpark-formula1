@@ -47,7 +47,7 @@ So far the list of future improvements is as follows:
 [ ] multi-class accuracy <br>
 [ ] trying out https://github.com/omnata-labs/dbt-ml-preprocessing for some of preprocessing?
 
-##Contributing
+## Contributing
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated!! 
 Really, any changes you'd like to see made to this project come to life is awesome!
 
