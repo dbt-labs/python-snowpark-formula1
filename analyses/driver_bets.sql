@@ -8,9 +8,11 @@ encoding_mapping as (
 
 select 
     original_driver_value, 
+    AVG(position_predicted) as avg_position_predicted,
     encoded_driver_value, 
-    predictions.driver,
-    AVG(position_predicted) as avg_position_predicted
+    predictions.driver
+    
 from predictions
 join encoding_mapping on predictions.driver=encoding_mapping.encoded_driver_value
-group by 1,2,3
+group by 1,3,4
+order by avg_position_predicted
