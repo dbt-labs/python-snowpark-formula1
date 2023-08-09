@@ -70,7 +70,8 @@ def model(dbt, session):
    dbt.config(
        packages = ['snowflake-snowpark-python' ,'scipy','scikit-learn' ,'pandas' ,'numpy'],
        materialized = "table",
-       tags = "predict"
+       tags = "predict",
+       use_anonymous_sproc=True
    )
    session._use_scoped_temp_objects = False
    download_models_and_libs_from_stage(session)
