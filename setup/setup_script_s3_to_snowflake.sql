@@ -79,6 +79,18 @@ copy into constructors
 from @formula1_stage/constructors.csv
 on_error='continue';
 
+--RACERS
+create or replace table formula1.rawracers (
+	RACER_ID NUMBER(38,0),
+	RACER_REF VARCHAR(16777216),
+	NAME VARCHAR(16777216),
+	NATIONALITY VARCHAR(16777216),
+	URL VARCHAR(16777216)
+);
+copy into race 
+from @formula1_stage/racers.csv
+on_error='continue';
+
 --DRIVER STANDINGS
 create or replace table formula1.raw.driver_standings (
 	DRIVER_STANDINGS_ID NUMBER(38,0),
