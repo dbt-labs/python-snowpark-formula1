@@ -243,3 +243,12 @@ create or replace table formula1.raw.status (
 copy into status 
 from @formula1_stage/status.csv
 on_error='continue';
+
+--TRACKS
+createorreplace table formula1.raw.tracks (
+	TRACKS_ID NUMBER(38,0),
+	TRACKS VARCHAR(16777216)
+);
+copy into tracks 
+from @formula1_stage/tracks.csv
+on_error='continue';
