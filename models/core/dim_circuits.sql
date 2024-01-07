@@ -10,3 +10,4 @@ SELECT
     {{ dbt_utils.generate_surrogate_key(['circuit_id']) }}      AS dim_circuit_id,
    *
 FROM circuits
+--add comment for slim-ci
