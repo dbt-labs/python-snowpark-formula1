@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 
 def model(dbt, session):
   # dbt configuration
-  dbt.config(packages=["pandas","numpy","scikit-learn"])
+  dbt.config(packages=["pandas==1.5.3","numpy","scikit-learn"])
 
   # get upstream data
   data = dbt.ref("ml_data_prep").to_pandas()

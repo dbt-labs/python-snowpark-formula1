@@ -2,7 +2,7 @@ import pandas as pd
 
 def model(dbt, session):
     # dbt configuration
-    dbt.config(packages=["pandas"])
+    dbt.config(packages=["pandas==1.5.3"])
 
     # get upstream data
     fct_results = dbt.ref("mrt_results_circuits").to_pandas()
