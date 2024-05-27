@@ -1,4 +1,4 @@
-name: 'snowflake_python_workshop'
+name: 'python-snowpark-formula1'
 version: '1.5.0'
 require-dbt-version: '>=1.3.0'
 config-version: 2
