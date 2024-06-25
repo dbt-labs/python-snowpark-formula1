@@ -13,6 +13,7 @@ from snowflake.ml.registry import Registry
 
 logger = logging.getLogger("mylog")
 
+#credit: code borrowed from https://medium.com/snowflake/getting-started-with-snowpark-model-registry-131e5a2783c4
 def get_next_version(reg, model_name) -> str:
     models = reg.show_models()
     if models.empty:
