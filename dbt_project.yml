@@ -24,22 +24,26 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   snowflake_python_workshop:
     staging:
+      +schema: staging
       +docs:
         node_color: "CadetBlue"
 
     marts:
       +materialized: table
+      +schema: marts
       aggregates:
         +docs:
           node_color: "Maroon"
         +tags: "bi"
 
     core:
+      +schema: core
       +materialized: table
       +docs:
         node_color: "#800080"
 
     ml:
+      +schema: ml
       +materialized: table
       prep_encoding_splitting:
         +docs:

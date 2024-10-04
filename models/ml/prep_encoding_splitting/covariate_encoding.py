@@ -36,8 +36,8 @@ def model(dbt, session):
           return 2
 
   # we are dropping the columns that we filtered on in addition to our training variable
-  encoded_data = fil_cov.drop(['ACTIVE_DRIVER','ACTIVE_CONSTRUCTOR'],1)
-  encoded_data['POSITION_LABEL']= encoded_data['DRIVER_POSITION'].apply(lambda x: position_index(x))
-  encoded_data_grouped_target = encoded_data.drop(['DRIVER_POSITION'],1)
+  encoded_data = fil_cov.drop(['ACTIVE_DRIVER','ACTIVE_CONSTRUCTOR'], axis=1)
+  encoded_data['POSITION_LABEL'] = encoded_data['DRIVER_POSITION'].apply(lambda x: position_index(x))
+  encoded_data_grouped_target = encoded_data.drop(['DRIVER_POSITION'], axis=1)
 
   return encoded_data_grouped_target

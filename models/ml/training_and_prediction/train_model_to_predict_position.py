@@ -1,36 +1,19 @@
 import snowflake.snowpark.functions as F
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from sklearn.metrics import confusion_matrix, balanced_accuracy_score
 import io
 from sklearn.linear_model import LogisticRegression
-from joblib import dump, load
-import joblib
-import logging
+from sklearn.metrics import confusion_matrix, balanced_accuracy_score
 import sys
-from joblib import dump, load
-
-logger = logging.getLogger("mylog")
-
-def save_file(session, model, path, dest_filename):
- input_stream = io.BytesIO()
- joblib.dump(model, input_stream)
- session._conn.upload_stream(input_stream, path, dest_filename)
- return "successfully created file: " + path
+from snowflake.ml.registry import Registry
 
 def model(dbt, session):
    dbt.config(
-       packages = ['numpy','scikit-learn','pandas','numpy','joblib','cachetools'],
+       packages = ['numpy','scikit-learn','pandas','cachetools','snowflake-ml-python'],
        materialized = "table",
        tags = "train"
    )
-   # Create a stage in Snowflake to save our model file
-   session.sql('create or replace stage MODELSTAGE').collect()
-  
-   #session._use_scoped_temp_objects = False
-   version = "1.0"
-   logger.info('Model training version: ' + version)
-
+   session.use_schema('DEV_TROUZEDB.DBT_TROUZE_ML')
    # read in our training and testing upstream dataset
    test_train_df = dbt.ref("training_testing_dataset")
 
@@ -55,10 +38,15 @@ def model(dbt, session):
    y_pred = model.predict_proba(X_test)[:,1]
    predictions = [round(value) for value in y_pred]
    balanced_accuracy =  balanced_accuracy_score(y_test, predictions)
+   
+   reg = Registry(session=session, database_name="DEV_TROUZEDB", schema_name="DBT_TROUZE_ML")
 
-   # Save the model to a stage
-   save_file(session, model, "@MODELSTAGE/driver_position_"+version, "driver_position_"+version+".joblib" )
-   logger.info('Model artifact:' + "@MODELSTAGE/driver_position_"+version+".joblib")
+   mv = reg.log_model(model,
+      model_name="driver_position",
+      conda_dependencies=['numpy','scikit-learn','pandas','cachetools'],
+      comment="Formula 1 Driver Position Prediction Model",
+      metrics={"score": 96},
+      sample_input_data=split_X)
   
    # Take our pandas training and testing dataframes and put them back into snowpark dataframes
    snowpark_train_df = session.write_pandas(pd.concat(train, axis=1, join='inner'), "train_table", auto_create_table=True, create_temp_table=True)

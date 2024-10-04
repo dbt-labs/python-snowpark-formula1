@@ -2,8 +2,8 @@ with
     circuits as (select * from {{ source('formula1', 'circuits') }}),
     renamed as (
         select
-            circuit_id as circuit_id,
-            circuit_ref as circuit_ref,
+            circuitid as circuit_id,
+            circuitref as circuit_ref,
             name as circuit_name,
             location as circuit_location,
             country as circuit_country,

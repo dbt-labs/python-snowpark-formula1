@@ -25,13 +25,13 @@ def model(dbt, session):
     data['CONSTRUCTOR_NAME'].replace(mapping, inplace=True)
 
     # create confidence metrics for drivers and constructors
-    dnf_by_driver = data.groupby('DRIVER').sum()['DNF_FLAG']
+    dnf_by_driver = data.groupby('DRIVER').sum(numeric_only=True)['DNF_FLAG']
     driver_race_entered = data.groupby('DRIVER').count()['DNF_FLAG']
     driver_dnf_ratio = (dnf_by_driver/driver_race_entered)
     driver_confidence = 1-driver_dnf_ratio
     driver_confidence_dict = dict(zip(driver_confidence.index,driver_confidence))
 
-    dnf_by_constructor = data.groupby('CONSTRUCTOR_NAME').sum()['DNF_FLAG']
+    dnf_by_constructor = data.groupby('CONSTRUCTOR_NAME').sum(numeric_only=True)['DNF_FLAG']
     constructor_race_entered = data.groupby('CONSTRUCTOR_NAME').count()['DNF_FLAG']
     constructor_dnf_ratio = (dnf_by_constructor/constructor_race_entered)
     constructor_relaiblity = 1-constructor_dnf_ratio
