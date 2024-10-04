@@ -29,4 +29,3 @@ def model(dbt, session):
 
   return encoding_mapping
 
-

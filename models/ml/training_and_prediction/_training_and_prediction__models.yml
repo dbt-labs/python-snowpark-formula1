@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: apply_prediction_to_position
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']
+
+  - name: train_model_to_predict_position
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']

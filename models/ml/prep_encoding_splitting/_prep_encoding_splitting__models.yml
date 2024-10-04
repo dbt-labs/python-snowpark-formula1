@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: covariate_encoding
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']
+
+  - name: encoding_mapping
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']
+
+  - name: hold_out_dataset_for_prediction
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']
+
+  - name: ml_data_prep
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']
+
+  - name: training_testing_dataset
+    description: My transformation written in Python
+    config:
+      schema: ML
+      materialized: table
+      tags: ['python']
